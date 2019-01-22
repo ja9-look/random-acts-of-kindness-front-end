@@ -8,18 +8,12 @@ body {
   color:#ffffff;
   font-family: 'Rubik', sans-serif;
 }
-
-<<<<<<< HEAD
 .logo-img{
   width: 200px;
 }
 
 .act-img{
-  width: 200px;
-=======
-#act-img{
   max-width: 250px;
->>>>>>> af6ba055f4474213e27e6ef3608da51c77db62b6
 }
 
 .container{
