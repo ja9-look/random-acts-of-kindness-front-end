@@ -6,5 +6,26 @@ orange: #ec8047
 body {
   background-color: #9b1841;
   color:#ffffff;
-font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik', sans-serif;
+}
+
+.container{
+  text-align: center;
+}
+
+.responsive-table{
+  display: inline-block;
+}
+
+.generate-button {
+  background-color: #ec8047;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
 }
