@@ -14,7 +14,7 @@ let state = {
 
 let selectedCategories = []
 
-//----------Get data from API
+//----------Get data from API---------------
 
 function fetchActsFromAPI() {
     //RETURNS A PROMISE
@@ -36,17 +36,19 @@ function init() {
   fetchUsersFromAPI()
 }
 
-//----------Render Act data to page
+//----------Render Act data to page--------------------
 
 function renderAct(id) {
   const targetAct = state.acts.find(act => act.id === id)
   actImageEl.src = targetAct.image_url
   actTextEl.innerText = targetAct.content
 }
+//renders Act with a given ID
 
 function getRandomIndex(actArray) {
   return Math.floor(Math.random() * actArray.length);
 }
+//returns random index within
 
 function randomActFromSelectedCategoryIDs() {
   //MOCKED UP. USE COMMENTED LINES WHEN HAVE CAT BUTTONS SET UP
@@ -55,16 +57,22 @@ function randomActFromSelectedCategoryIDs() {
   const actIndex = getRandomIndex(state.acts)
   return state.acts[parseInt(actIndex)]
 }
+//selects random Act that matches the filtered categories
 
-function onEventButton() {
+function onGenerateButton() {
   const id = randomActFromSelectedCategoryIDs().id
   renderAct(id)
 }
+//final function to call when generate button clicked
 
 
 
-//------------Event Listeners
+//------------Event Listeners--------------------------
+function onDoneButton() {
+  //post request to API
+}
 
-generateButton.addEventListener(`click`, onEventButton)
+generateButton.addEventListener(`click`, onGenerateButton)
+doneButton.addEventListener(`click`, onDoneButton)
 
 init()
