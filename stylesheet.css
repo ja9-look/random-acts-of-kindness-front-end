@@ -9,6 +9,10 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
+#act-img{
+  max-width: 250px;
+}
+
 .container{
   text-align: center;
 }

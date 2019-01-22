@@ -5,7 +5,7 @@ const actDoneCountEl = document.querySelector(".done-count-container")
 //const userDoneCountEl
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
-const categorySelectorEl =
+//const categorySelectorEl =
 
 let state = {
   acts: [],
@@ -49,19 +49,22 @@ function getRandomIndex(actArray) {
 }
 
 function randomActFromSelectedCategoryIDs() {
-  const actArray = state.acts.filter(act => selectedCategories.includes(act.category_id))
-  const actIndex = getRandomIndex(actArray)
-  return actArray[parseInt(actIndex)]
+  //MOCKED UP. USE COMMENTED LINES WHEN HAVE CAT BUTTONS SET UP
+  //const actArray = state.acts.filter(act => selectedCategories.includes(act.category_id))
+  //const actIndex = getRandomIndex(actArray)
+  const actIndex = getRandomIndex(state.acts)
+  return state.acts[parseInt(actIndex)]
 }
 
 function onEventButton() {
-  id = 
+  const id = randomActFromSelectedCategoryIDs().id
+  renderAct(id)
 }
 
 
 
 //------------Event Listeners
 
-generateButton.addEventListener(`click`, generateRan)
+generateButton.addEventListener(`click`, onEventButton)
 
 init()
