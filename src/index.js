@@ -5,7 +5,7 @@ const actDoneCountEl = document.querySelector(".done-count-container")
 //const userDoneCountEl
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
-const categorySelectorEl =
+//const categorySelectorEl =
 
 let state = {
   acts: [],
@@ -14,7 +14,7 @@ let state = {
 
 let selectedCategories = []
 
-//----------Get data from API
+//----------Get data from API---------------
 
 function fetchActsFromAPI() {
     //RETURNS A PROMISE
@@ -36,32 +36,43 @@ function init() {
   fetchUsersFromAPI()
 }
 
-//----------Render Act data to page
+//----------Render Act data to page--------------------
 
 function renderAct(id) {
   const targetAct = state.acts.find(act => act.id === id)
   actImageEl.src = targetAct.image_url
   actTextEl.innerText = targetAct.content
 }
+//renders Act with a given ID
 
 function getRandomIndex(actArray) {
   return Math.floor(Math.random() * actArray.length);
 }
+//returns random index within
 
 function randomActFromSelectedCategoryIDs() {
-  const actArray = state.acts.filter(act => selectedCategories.includes(act.category_id))
-  const actIndex = getRandomIndex(actArray)
-  return actArray[parseInt(actIndex)]
+  //MOCKED UP. USE COMMENTED LINES WHEN HAVE CAT BUTTONS SET UP
+  //const actArray = state.acts.filter(act => selectedCategories.includes(act.category_id))
+  //const actIndex = getRandomIndex(actArray)
+  const actIndex = getRandomIndex(state.acts)
+  return state.acts[parseInt(actIndex)]
+}
+//selects random Act that matches the filtered categories
+
+function onGenerateButton() {
+  const id = randomActFromSelectedCategoryIDs().id
+  renderAct(id)
+}
+//final function to call when generate button clicked
+
+
+
+//------------Event Listeners--------------------------
+function onDoneButton() {
+  //post request to API
 }
 
-function onEventButton() {
-  id = 
-}
-
-
-
-//------------Event Listeners
-
-generateButton.addEventListener(`click`, generateRan)
+generateButton.addEventListener(`click`, onGenerateButton)
+doneButton.addEventListener(`click`, onDoneButton)
 
 init()
