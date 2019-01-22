@@ -1,12 +1,20 @@
 /* color palette:
-dark pink: #9b1841
-orange: #ec8047
+dark pink: #AD2B53
+orange: #F39458
 */
 
 body {
-  background-color: #9b1841;
+  background-color: #AD2B53;
   color:#ffffff;
   font-family: 'Rubik', sans-serif;
+}
+
+.logo-img{
+  width: 200px;
+}
+
+.act-img{
+  width: 200px;
 }
 
 .container{
@@ -18,7 +26,7 @@ body {
 }
 
 .generate-button {
-  background-color: #ec8047;
+  background-color: #F39458;
   border: none;
   border-radius: 5px;
   color: white;
