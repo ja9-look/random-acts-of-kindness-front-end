@@ -1,7 +1,6 @@
 const baseURL = "http://localhost:3000/api/v1/"
 const actImageEl = document.querySelector('#act-img')
 const actTextEl = document.querySelector('#act-text')
-const actDoneCountEl = document.querySelector(".done-count-container")
 const doneCountEl = document.querySelector('#done-streak')
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
@@ -83,8 +82,21 @@ function onAllButton(event) {
 function onDoneButton(id) {
     const targetAct = state.acts.find(act => act.id === id)
     targetAct.done_count ++
+    renderDoneCount(id)
+    updateDoneDatabase(id)
+}
 
-
+function updateDoneDatabase(id) {
+  fetch(doneURL, {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        image_id: imageId
+    })
+  }).then(resp => resp.json())
 }
 
 //----------Render Act data to page--------------------
@@ -93,9 +105,14 @@ function renderAct(id) {
   const targetAct = state.acts.find(act => act.id === id)
   actImageEl.src = targetAct.image_url
   actTextEl.innerText = targetAct.content
+  renderDoneCount(id)
   doneButton.addEventListener('click', e => onDoneButton(id))
 }
 //renders Act with a given ID
+function renderDoneCount(id) {
+  const targetAct = state.acts.find(act => act.id === id)
+  doneCountEl.innerText = `This act has been done ${targetAct.done_count} times!`
+}
 
 function getRandomIndex(actArray) {
   return Math.floor(Math.random() * actArray.length);
