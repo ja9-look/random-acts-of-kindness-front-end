@@ -11,7 +11,7 @@ const actTextEl = document.querySelector('#act-text')
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
 const doneCountEl = document.querySelector('#done-streak')
-
+let newGif = ""
 
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
@@ -19,6 +19,7 @@ const arrayOfCategories = [animalsButton, environmentButton, familyButton, chari
 let state = {
   acts: [],
   users: [],
+  currentUser: {},
   selectedCategories: new Set([])
 }
 
@@ -130,6 +131,7 @@ function randomActFromSelectedCategoryIDs() {
 //selects random Act that matches the filtered categories
 
 function onGenerateButton() {
+
   if (state.selectedCategories.size > 0) {
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
@@ -141,5 +143,75 @@ function onGenerateButton() {
   }
 }
 //final function to call when generate button clicked
+
+//----------------Signup----------------------
+
+// function createNewUser(name) {
+//   fetch(baseURL + "users", {
+//     method: 'POST',
+//     headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//         name: name
+//     })
+//   })
+// }
+//
+// function onSignupFormSubmit(event) {
+//   event.preventDefault()
+//   const name = event.target.value
+//   createNewUser(name)
+// }
+//
+// signupForm.addEventListener(`submit`, onSignupFormSubmit)
+//
+//
+
+//---------------Add new act--------------------
+onNewActSubmit(event) {
+  event.preventDefault()
+  const content = whateverthevalueoftheactinputis //listen to this
+  const user_id = whatevertheidofthecurrentuseris //listen to this
+  const category_id = whateverthecategoryidis //listen to this
+  searchGifs(content)
+  const newAct = {content: content, user_id: user_id, category_id: category_id, image_url: newGif}
+  state.acts.push(newAct)
+  saveNewActToAPI(newAct) //write this function
+  const id = getnewactid //write this function
+  renderAct(id)
+
+}
+
+
+//---------------Giphy--------------
+
+
+
+function searchGifs(searchTerm) {
+  searchTerm = searchTerm.trim().replace(/ /g, "+");
+
+  const key = "UJDWiFrHozRQi5duuiI3YDFSgqIcbnqC"
+  request = new XMLHttpRequest;
+  request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&api_key=UJDWiFrHozRQi5duuiI3YDFSgqIcbnqC')
+  request.onload = function() {
+		if (request.status >= 200 && request.status < 400){
+
+      const data = JSON.parse(request.responseText).data[0].id;
+			newGif = `https://media.giphy.com/media/${data}/giphy.gif` ;
+
+		} else {
+			console.log('reached giphy, but API returned an error');
+		 }
+	};
+
+	request.onerror = function() {
+		console.log('connection error');
+	};
+
+	request.send();
+};
+//returns url of first gif from search on giphy
 
 init()
