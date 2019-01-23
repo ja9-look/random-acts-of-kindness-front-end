@@ -21,6 +21,16 @@ button {
   display: inline-block;
 }
 
+/*--ui color variables--*/
+$white: #ececec;
+$black: #111111;
+$pink: #AD2B53;
+$orange: #F39458;
+$colorPrimary: $pink;
+$colorSecondary: $orange;
+$cubic-bezier:cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+
 .generate-button {
   background-color: #F39458;
   border: none;
@@ -40,5 +50,5 @@ button {
 }
 
 .act-img{
-  width: 250px;
+  width: 50px;
 }
