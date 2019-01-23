@@ -5,14 +5,35 @@ const actDoneCountEl = document.querySelector(".done-count-container")
 //const userDoneCountEl
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
-//const categorySelectorEl =
+const allButton = document.querySelector(".all-categories")
+const animalsButton = document.querySelector(".animals")
+const environmentButton = document.querySelector(".environment")
+const familyButton = document.querySelector(".family-friends")
+const charityButton = document.querySelector(".charity")
+const workButton = document.querySelector(".work")
+
+function onCatButton(event) {
+  const catId = parseInt(event.target.dataset.id)
+  state.selectedCategories.add(catId)
+}
+
+function onAllButton(event) {
+  state.selectedCategories = new Set([1,2,3,4,5])
+}
+
+allButton.addEventListener(`click`, onAllButton)
+animalsButton.addEventListener(`click`, onCatButton)
+environmentButton.addEventListener(`click`, onCatButton)
+familyButton.addEventListener(`click`, onCatButton)
+charityButton.addEventListener(`click`, onCatButton)
+workButton.addEventListener(`click`, onCatButton)
+
 
 let state = {
   acts: [],
-  users: []
+  users: [],
+  selectedCategories: new Set([])
 }
-
-let selectedCategories = []
 
 //----------Get data from API---------------
 
@@ -52,10 +73,10 @@ function getRandomIndex(actArray) {
 
 function randomActFromSelectedCategoryIDs() {
   //MOCKED UP. USE COMMENTED LINES WHEN HAVE CAT BUTTONS SET UP
-  //const actArray = state.acts.filter(act => selectedCategories.includes(act.category_id))
-  //const actIndex = getRandomIndex(actArray)
-  const actIndex = getRandomIndex(state.acts)
-  return state.acts[parseInt(actIndex)]
+  const actArray = state.acts.filter(act => state.selectedCategories.has(act.category_id))
+  const actIndex = getRandomIndex(actArray)
+  // const actIndex = getRandomIndex(state.acts)
+  return actArray[actIndex]
 }
 //selects random Act that matches the filtered categories
 
@@ -74,5 +95,6 @@ function onDoneButton() {
 
 generateButton.addEventListener(`click`, onGenerateButton)
 doneButton.addEventListener(`click`, onDoneButton)
+
 
 init()
