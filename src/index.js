@@ -2,7 +2,7 @@ const baseURL = "http://localhost:3000/api/v1/"
 const actImageEl = document.querySelector('#act-img')
 const actTextEl = document.querySelector('#act-text')
 const actDoneCountEl = document.querySelector(".done-count-container")
-//const userDoneCountEl
+const doneCountEl = document.querySelector('#done-streak')
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
 const allButton = document.querySelector("#all-categories")
@@ -14,38 +14,39 @@ const workButton = document.querySelector("#work")
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
-allButton.addEventListener(`click`, onAllButton)
-animalsButton.addEventListener(`click`, onCatButton)
-environmentButton.addEventListener(`click`, onCatButton)
-familyButton.addEventListener(`click`, onCatButton)
-charityButton.addEventListener(`click`, onCatButton)
-workButton.addEventListener(`click`, onCatButton)
-
-
 let state = {
   acts: [],
   users: [],
   selectedCategories: new Set([])
 }
 
+//----------------Event Listeners-----------------------------
+
+allButton.addEventListener(`click`, onAllButton)
+animalsButton.addEventListener(`click`, onCatButton)
+environmentButton.addEventListener(`click`, onCatButton)
+familyButton.addEventListener(`click`, onCatButton)
+charityButton.addEventListener(`click`, onCatButton)
+workButton.addEventListener(`click`, onCatButton)
+generateButton.addEventListener(`click`, onGenerateButton)
+doneButton.addEventListener(`click`, onDoneButton)
+
+
 //----------Get data from API---------------
 
 function fetchActsFromAPI() {
-    //RETURNS A PROMISE
   return fetch('http://localhost:3000/api/v1/acts')
   .then(res => res.json())
   .then(res => state.acts = res)
 }
 
 function fetchUsersFromAPI() {
-    //RETURNS A PROMISE
   return fetch('http://localhost:3000/api/v1/users')
   .then(res => res.json())
   .then(res => state.users = res)
 }
 
 function init() {
-  //RETURNS A PROMISE
   fetchActsFromAPI()
   fetchUsersFromAPI()
 }
@@ -53,6 +54,7 @@ function init() {
 //-----------Event Listener Functions----------
 
 function onCatButton(event) {
+  event.preventDefault()
   const catId = parseInt(event.target.dataset.id)
   if (event.target.class === "active") {
     event.target.class = ""
@@ -65,6 +67,7 @@ function onCatButton(event) {
 }
 
 function onAllButton(event) {
+  event.preventDefault()
   if (allButton.class === "active") {
     allButton.class = ""
     state.selectedCategories = new Set([])
@@ -75,6 +78,12 @@ function onAllButton(event) {
     allButton.class = "active"
     arrayOfCategories.forEach(category => category.class = "active")
   }
+}
+
+function onDoneButton(id) {
+    const targetAct = state.acts.find(act => act.id === id)
+    targetAct.done_count ++
+
 
 }
 
@@ -84,6 +93,7 @@ function renderAct(id) {
   const targetAct = state.acts.find(act => act.id === id)
   actImageEl.src = targetAct.image_url
   actTextEl.innerText = targetAct.content
+  doneButton.addEventListener('click', e => onDoneButton(id))
 }
 //renders Act with a given ID
 
@@ -110,16 +120,5 @@ function onGenerateButton() {
   }
 }
 //final function to call when generate button clicked
-
-
-
-//------------Event Listeners--------------------------
-function onDoneButton() {
-  //post request to API
-}
-
-generateButton.addEventListener(`click`, onGenerateButton)
-doneButton.addEventListener(`click`, onDoneButton)
-
 
 init()
