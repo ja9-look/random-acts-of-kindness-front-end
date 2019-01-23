@@ -6,15 +6,11 @@ orange: #F39458
 body {
   background-color: #AD2B53;
   color:#ffffff;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.logo-img{
-  width: 200px;
-}
-
-.act-img{
-  width: 250px;
+button {
+  font-family: 'Open Sans', sans-serif;
 }
 
 .container{
@@ -25,6 +21,16 @@ body {
   display: inline-block;
 }
 
+/*--ui color variables--*/
+$white: #ececec;
+$black: #111111;
+$pink: #AD2B53;
+$orange: #F39458;
+$colorPrimary: $pink;
+$colorSecondary: $orange;
+$cubic-bezier:cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+
 .generate-button {
   background-color: #F39458;
   border: none;
@@ -33,7 +39,16 @@ body {
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
+}
+
+.logo-img{
+  width: 200px;
+}
+
+.act-img{
+  width: 50px;
 }
