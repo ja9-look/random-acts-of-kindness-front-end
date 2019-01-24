@@ -16,7 +16,7 @@ const newActInput = document.querySelector('#new-act-input')
 const newActCat = document.querySelector('#new-act-cat')
 const signupForm = document.querySelector('#signup-form')
 const signupInput = document.querySelector('#signup-input')
-
+const welcomeMessage = document.querySelector('.welcome-message')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -176,8 +176,14 @@ function onSignupFormSubmit(event) {
   if (signupInput.value.length > 0) {
   const name = signupInput.value
   createNewUser(name)
-
+  .then(res => res.json())
+  .then(() => fetchUsersFromAPI())
+  .then(() => welcomeUser(name))
 }
+}
+
+function welcomeUser(name) {
+  welcomeMessage.innerText = `Welcome, to Helpcues, ${name}!`
 }
 
 signupForm.addEventListener(`submit`, onSignupFormSubmit)
