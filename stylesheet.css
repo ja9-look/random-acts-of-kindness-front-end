@@ -25,6 +25,7 @@ button {
   text-align: left;
 }
 
+/* two - columns for category buttons on left and generate on right START*/
 .column {
   float: left;
 }
@@ -37,11 +38,12 @@ button {
   width: 75%;
 }
 
+/* two - columns for category buttons on left and generate on right END */
 .responsive-table{
   display: inline-block;
 }
 
-/* Category Button */
+/* Category Button START*/
 
 .btn {
 	position: relative;
@@ -78,7 +80,7 @@ button {
 	transition-delay: .4s;
 }
 
-/* From Left */
+/* From Left Animation */
 
 .from-left:before,
 .from-left:after {
@@ -102,12 +104,13 @@ button {
 .from-left:hover:after {
 	width: 100%;
 }
-/* Category Button */
+/* Category Button END */
 
 .logo-img{
   width: 200px;
 }
 
 .act-img{
-  width: 50px;
+  max-width: auto;
+  max-height: 200px;
 }
