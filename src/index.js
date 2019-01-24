@@ -174,6 +174,21 @@ function onGenerateButton() {
 // signupForm.addEventListener(`submit`, onSignupFormSubmit)
 //
 //
+// PASSING FUNCTION BY REFERENCE
+// PASSING FUNCTION BY RESULT
+//
+// document.addEventListener('click', runFunction)
+// document.addEventListener('click', runFunction())
+//
+// document.addEventListener('click', 3)
+//
+// document.addEventListener('click', runFunction(asdfasdf))
+// document.addEventListener('click', 3)
+//
+//
+//
+// document.addEventListener('click', () => runFunction(asdfasdf))
+//
 
 //---------------Add new act--------------------
 function onNewActSubmit(event) {
@@ -183,18 +198,20 @@ function onNewActSubmit(event) {
 
   const userID = 2 //change this
   const catID = parseInt(newActCat.value)
-  searchGifs(content)
+  let newAct;
+  debugger
+  searchGifs(content).then(() => {
+    return newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
+  }).then((res) => saveNewActToAPI(res))
+    .then(() => fetchActsFromAPI())
+    .then(() => renderAct(state.acts.find(act => act.content === content).id))
+  }
 
-  const newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
-  //debugger
-  saveNewActToAPI(newAct)
-  //.then(res => console.log(res))
-  init()
-  renderAct(state.acts.find(act => act.content === actContent).id)
-}
+
 
 function saveNewActToAPI(newAct) {
-  fetch(`http://localhost:3000/api/v1/acts/`, {
+
+  return fetch(`http://localhost:3000/api/v1/acts/`, {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
@@ -202,45 +219,20 @@ function saveNewActToAPI(newAct) {
     },
     body: JSON.stringify(newAct)
   })
-}.then(res => console.log(res))
-
-//
-// function getNewActID(actContent) {
-//   const targetAct =
-//   return targetAct.id
-// }
-
+}
 
 
 //---------------Giphy--------------
 
 
-
 function searchGifs(searchTerm) {
   searchTerm = searchTerm.trim().replace(/ /g, "+");
-
   const key = "UJDWiFrHozRQi5duuiI3YDFSgqIcbnqC"
-  request = new XMLHttpRequest;
-  request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&api_key=UJDWiFrHozRQi5duuiI3YDFSgqIcbnqC')
-  request.onload = function() {
-    // const data = JSON.parse(request.responseText).data[0].id;
-    //
-    // state.newGif = `https://media.giphy.com/media/${data}/giphy.gif`
-		if (request.status >= 200 && request.status < 400){
 
-      const data = JSON.parse(request.responseText).data[0].id;
-			return newGif = `https://media.giphy.com/media/${data}/giphy.gif` ;
-
-		} else {
-			console.log('reached giphy, but API returned an error');
-		 }
-	};
-
-	request.onerror = function() {
-		console.log('connection error');
-	};
-
-	request.send();
+  return fetch('http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&api_key=UJDWiFrHozRQi5duuiI3YDFSgqIcbnqC')
+    .then(request => request.json())
+    .then(res => res.data[0].id)
+    .then(res => state.newGif = `https://media.giphy.com/media/${res}/giphy.gif`)
 };
 //returns url of first gif from search on giphy
 
