@@ -144,7 +144,6 @@ function onGenerateButton() {
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
 
-
   }
   else {
     actImageEl.src = ""
@@ -176,40 +175,25 @@ function onGenerateButton() {
 // }
 //
 // signupForm.addEventListener(`submit`, onSignupFormSubmit)
-//
-//
-// PASSING FUNCTION BY REFERENCE
-// PASSING FUNCTION BY RESULT
-//
-// document.addEventListener('click', runFunction)
-// document.addEventListener('click', runFunction())
-//
-// document.addEventListener('click', 3)
-//
-// document.addEventListener('click', runFunction(asdfasdf))
-// document.addEventListener('click', 3)
-//
-//
-//
-// document.addEventListener('click', () => runFunction(asdfasdf))
-//
 
 
 //---------------Add new act--------------------
 
 function onNewActSubmit(event) {
-
   event.preventDefault()
-  const content = newActInput.value
+  if (newActInput.value.length > 0 && newActCat.value.length > 0) {
+      const content = newActInput.value
 
-  const userID = 2 //change this
-  const catID = parseInt(newActCat.value)
-  let newAct;
-  searchGifs(content).then(() => {
-    return newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
-  }).then((res) => saveNewActToAPI(res))
-    .then(() => fetchActsFromAPI())
-    .then(() => renderAct(state.acts.find(act => act.content === content).id))
+      const userID = 2 //change this
+      const catID = parseInt(newActCat.value)
+      let newAct;
+      searchGifs(content).then(() => {
+        return newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
+        }).then((res) => saveNewActToAPI(res))
+          .then(() => fetchActsFromAPI())
+          .then(() => renderAct(state.acts.find(act => act.content === content).id))
+    newActForm.reset()
+  }
   }
 
 
