@@ -124,8 +124,9 @@ button {
   text-transform: uppercase;
 }
 
-.new-act-form {
+.new-act-collapsible {
   padding: 0 18px;
+  display: none;
   overflow: hidden;
 }
 
