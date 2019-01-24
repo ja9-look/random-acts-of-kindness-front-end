@@ -14,6 +14,9 @@ const doneCountEl = document.querySelector('#done-streak')
 const newActForm = document.querySelector('#new-act-form')
 const newActInput = document.querySelector('#new-act-input')
 const newActCat = document.querySelector('#new-act-cat')
+const signupForm = document.querySelector('#signup-form')
+const signupInput = document.querySelector('#signup-input')
+
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -145,7 +148,6 @@ function onGenerateButton() {
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
 
-
   }
   else {
     actImageEl.src = ""
@@ -157,63 +159,49 @@ function onGenerateButton() {
 
 //----------------Signup----------------------
 
-// function createNewUser(name) {
-//   fetch(baseURL + "users", {
-//     method: 'POST',
-//     headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//         name: name
-//     })
-//   })
-// }
-//
-// function onSignupFormSubmit(event) {
-//   event.preventDefault()
-//   const name = event.target.value
-//   createNewUser(name)
-// }
-//
-// signupForm.addEventListener(`submit`, onSignupFormSubmit)
-//
-//
-// PASSING FUNCTION BY REFERENCE
-// PASSING FUNCTION BY RESULT
-//
-// document.addEventListener('click', runFunction)
-// document.addEventListener('click', runFunction())
-//
-// document.addEventListener('click', 3)
-//
-// document.addEventListener('click', runFunction(asdfasdf))
-// document.addEventListener('click', 3)
-//
-//
-//
-// document.addEventListener('click', () => runFunction(asdfasdf))
-//
+function createNewUser(name) {
+  fetch(baseURL + "users", {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: name
+    })
+  })
+}
+
+function onSignupFormSubmit(event) {
+  event.preventDefault()
+  if (signupInput.value.length > 0) {
+  const name = signupInput.value
+  createNewUser(name)
+
+}
+}
+
+signupForm.addEventListener(`submit`, onSignupFormSubmit)
 
 
 //---------------Add new act--------------------
 
 function onNewActSubmit(event) {
-
   event.preventDefault()
-  const content = newActInput.value
+  if (newActInput.value.length > 0 && newActCat.value.length > 0) {
+      const content = newActInput.value
 
-  const userID = 2 //change this
-  const catID = parseInt(newActCat.value)
-  let newAct;
-  searchGifs(content).then(() => {
-    return newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
-  }).then((res) => saveNewActToAPI(res))
-    .then(() => fetchActsFromAPI())
-    .then(() => renderAct(state.acts.find(act => act.content === content).id))
+      const userID = 2 //change this
+      const catID = parseInt(newActCat.value)
+      let newAct;
+      searchGifs(content).then(() => {
+        return newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
+        }).then((res) => saveNewActToAPI(res))
+          .then(() => fetchActsFromAPI())
+          .then(() => renderAct(state.acts.find(act => act.content === content).id))
+    newActForm.reset()
   }
-
-
+  }
 
 function saveNewActToAPI(newAct) {
 
@@ -240,6 +228,6 @@ function searchGifs(searchTerm) {
     .then(res => res.data[0].id)
     .then(res => state.newGif = `https://media.giphy.com/media/${res}/giphy.gif`)
 };
-//returns url of first gif from search on giphy
+//returns promise of url of first gif from search on giphy
 
 init()
