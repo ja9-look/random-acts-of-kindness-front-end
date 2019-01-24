@@ -39,6 +39,7 @@ workButton.addEventListener(`click`, onCatButton)
 generateButton.addEventListener(`click`, onGenerateButton)
 doneButton.addEventListener(`click`, onDoneButton)
 newActForm.addEventListener(`submit`, onNewActSubmit)
+signupForm.addEventListener(`submit`, onSignupFormSubmit)
 
 
 //----------Get data from API---------------
@@ -184,11 +185,8 @@ function onSignupFormSubmit(event) {
 }
 
 function welcomeUser(name) {
-  welcomeMessage.innerText = `Welcome, to Helpcues, ${name}!`
+  welcomeMessage.innerText = `Welcome to Helpcues, ${name}!`
 }
-
-signupForm.addEventListener(`submit`, onSignupFormSubmit)
-
 
 //---------------Add new act--------------------
 
