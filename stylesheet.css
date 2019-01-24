@@ -124,6 +124,11 @@ button {
   text-transform: uppercase;
 }
 
+.new-act-form {
+  padding: 0 18px;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;

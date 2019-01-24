@@ -39,6 +39,7 @@ workButton.addEventListener(`click`, onCatButton)
 generateButton.addEventListener(`click`, onGenerateButton)
 doneButton.addEventListener(`click`, onDoneButton)
 newActForm.addEventListener(`submit`, onNewActSubmit)
+collapsibleFormButton.addEventListener(`click`, onCollapseButton)
 
 
 //----------Get data from API---------------
@@ -229,5 +230,17 @@ function searchGifs(searchTerm) {
     .then(res => state.newGif = `https://media.giphy.com/media/${res}/giphy.gif`)
 };
 //returns promise of url of first gif from search on giphy
+
+
+//-------- collapsible form to create new act ---------------------
+
+function onCollapseButton() {
+  if (newActForm.style.display === "block") {
+      newActForm.style.display = "none";
+  } else {
+      newActForm.style.display = "block";
+    }
+  };
+
 
 init()
