@@ -17,6 +17,8 @@ const newActCat = document.querySelector('#new-act-cat')
 const signupForm = document.querySelector('#signup-form')
 const signupInput = document.querySelector('#signup-input')
 const welcomeMessage = document.querySelector('.welcome-message')
+const newActCollapsibleButton = document.querySelector('.collapsible')
+const newActCollapsibleForm = document.querySelector('.new-act-collapsible')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -40,7 +42,7 @@ generateButton.addEventListener(`click`, onGenerateButton)
 doneButton.addEventListener(`click`, onDoneButton)
 newActForm.addEventListener(`submit`, onNewActSubmit)
 signupForm.addEventListener(`submit`, onSignupFormSubmit)
-
+newActCollapsibleButton.addEventListener(`click`, onCollapseButton)
 
 //----------Get data from API---------------
 
@@ -238,10 +240,10 @@ function searchGifs(searchTerm) {
 //-------- collapsible form to create new act ---------------------
 
 function onCollapseButton() {
-  if (newActForm.style.display === "block") {
-      newActForm.style.display = "none";
+  if (newActCollapsibleForm.style.display === "block") {
+      newActCollapsibleForm.style.display = "none";
   } else {
-      newActForm.style.display = "block";
+      newActCollapsibleForm.style.display = "block";
     }
   };
 
