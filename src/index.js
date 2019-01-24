@@ -148,7 +148,6 @@ function randomActFromSelectedCategoryIDs() {
 function onGenerateButton() {
 
   if (state.selectedCategories.size > 0) {
-    debugger
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
 
@@ -178,7 +177,6 @@ function createNewUser(name) {
 
 function onSignupFormSubmit(event) {
   event.preventDefault()
-  debugger
   if (signupInput.value.length > 0) {
   const name = signupInput.value
   createNewUser(name)
@@ -189,7 +187,7 @@ function onSignupFormSubmit(event) {
 }
 
 function welcomeUser(name) {
-  welcomeMessage.innerText = `Welcome to Helpcues, ${name}!`
+  welcomeMessage.innerText = `Welcome, ${name}!`
 }
 
 //---------------Add new act--------------------
