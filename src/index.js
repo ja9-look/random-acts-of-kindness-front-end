@@ -119,6 +119,7 @@ function renderAct(id) {
   const targetAct = state.acts.find(act => act.id === id)
   actImageEl.src = targetAct.image_url
   actTextEl.innerText = targetAct.content
+  doneButton.style = "dislay: block;"
   doneButton.dataset.id = id
   doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
 

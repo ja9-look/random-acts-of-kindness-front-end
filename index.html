@@ -15,6 +15,7 @@
 
       <!-- Left Column -->
       <div class="column category-container">
+        <strong><h4 class="welcome-message"></h4></strong>
         <strong><h4 class="select-category">••• select category •••</h4></strong>
         <div class="btn from-left" data-id="6" id="all-categories"> ○ All</div>
         <div class="btn from-left" data-id="1" id="animals">♘ Animals</div>
@@ -22,20 +23,36 @@
         <div class="btn from-left" data-id="3" id="family-friends">♡ Family & Friends</div>
         <div class="btn from-left" data-id="4" id="charity">✙ Charity</div>
         <div class="btn from-left" data-id="5" id="work">✎ At Work</div>
-        <br><br>
+        <br>
         <h2>
           <div class="btn from-left generate-button">••• Generate >></div>
         </h2>
+        <br>
+
+
+              <form id="new-act-form">
+                  <input id="new-act-input" type="text" placeholder="Add Your Own Act Of Kindness"/>
+                  <select id="new-act-cat">
+                      <option value="" disabled selected>Select Category</option>
+                      <option value="1">Animals</option>
+                      <option value="2">Environment</option>
+                      <option value="3">Friends/Family</option>
+                      <option value="4">Charity</option>
+                      <option value="5">Work</option>
+                  </select>
+                  <input type="submit" value="Submit"/>
+                </form>
+
       </div>
       <!-- Left Column -->
 
       <!-- Right Column -->
-      <div class="column dashdott">
+      <div class="column">
         <div data-id="" class="act-container">
           <br>
           <img height=400px class="act-img" id="act-img" src="">
           <p id="act-text"></p>
-          <button type="button" class="done-button" data-id="">Done</button>
+          <button style="display: none;" class="done-button" data-id="">Done</button>
         </div>
         <div class="done-count-container">
           <p id="done-streak"></p>
@@ -43,21 +60,6 @@
         <!-- Right Column -->
 
       </div>
-
-
-
-      <form id="new-act-form">
-          <input id="new-act-input" type="text" placeholder="Add Your Own Act Of Kindness"/>
-          <select id="new-act-cat">
-              <option value="" disabled selected>Select Category</option>
-              <option value="1">Animals</option>
-              <option value="2">Environment</option>
-              <option value="3">Friends/Family</option>
-              <option value="4">Charity</option>
-              <option value="5">Work</option>
-          </select>
-          <input type="submit" value="Submit"/>
-        </form>
 
     </div>
   </body>
