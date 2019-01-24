@@ -14,6 +14,7 @@ button {
   font-family: 'Open Sans', sans-serif;
 }
 
+
 .container{
   text-align: center;
 }
@@ -113,4 +114,23 @@ button {
 .act-img{
   max-width: auto;
   max-height: 200px;
+}
+
+.select-category{
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+
+.new-act-form {
+  padding: 0 18px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
 }

@@ -27,20 +27,24 @@
         <h2>
           <div class="btn from-left generate-button">••• Generate >></div>
         </h2>
+      <!-- add new act -->
+        <div class="btn from-left collapsible select-category">+ Create New Act + </div>
         <br>
-
-              <form id="new-act-form">
-                  <input id="new-act-input" type="text" placeholder="Add Your Own Act Of Kindness"/>
-                  <select id="new-act-cat">
-                      <option value="" disabled selected>Select Category</option>
-                      <option value="1">Animals</option>
-                      <option value="2">Environment</option>
-                      <option value="3">Friends/Family</option>
-                      <option value="4">Charity</option>
-                      <option value="5">Work</option>
-                  </select>
-                  <input type="submit" value="Submit"/>
-                </form>
+        <div class="new-act-form">
+          <form id="new-act-form">
+              <p><input id="new-act-input" type="text" placeholder="Add Your Own Act Of Kindness"/>
+              <select id="new-act-cat">
+                  <option value="" disabled selected>Select Category</option>
+                  <option value="1">Animals</option>
+                  <option value="2">Environment</option>
+                  <option value="3">Friends/Family</option>
+                  <option value="4">Charity</option>
+                  <option value="5">Work</option>
+              </select></p>
+              <p><input type="submit" value="Submit"/></p>
+            </form>
+        </div>
+        <!-- add new act -->
 
       </div>
       <!-- Left Column -->
@@ -60,6 +64,10 @@
 
       </div>
 
+      <form id="signup-form">
+        <input id="signup-input" type="text" placeholder="Username"/>
+        <input type="submit" value="Sign Up"/>
+      </form>
     </div>
   </body>
 </html>
