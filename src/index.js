@@ -11,8 +11,9 @@ const actTextEl = document.querySelector('#act-text')
 const generateButton = document.querySelector(".generate-button")
 const doneButton = document.querySelector(".done-button")
 const doneCountEl = document.querySelector('#done-streak')
-let newGif = ""
-
+const newActForm = document.querySelector('#new-act-form')
+const newActInput = document.querySelector('#new-act-input')
+const newActCat = document.querySelector('#new-act-cat')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -20,7 +21,8 @@ let state = {
   acts: [],
   users: [],
   currentUser: {},
-  selectedCategories: new Set([])
+  selectedCategories: new Set([]),
+  newGif: ""
 }
 
 //----------------Event Listeners-----------------------------
@@ -33,6 +35,7 @@ charityButton.addEventListener(`click`, onCatButton)
 workButton.addEventListener(`click`, onCatButton)
 generateButton.addEventListener(`click`, onGenerateButton)
 doneButton.addEventListener(`click`, onDoneButton)
+newActForm.addEventListener(`submit`, onNewActSubmit)
 
 
 //----------Get data from API---------------
@@ -104,6 +107,9 @@ function onDoneButton() {
     })
   }
 
+
+
+
 //----------Render Act data to page--------------------
 
 
@@ -170,19 +176,40 @@ function onGenerateButton() {
 //
 
 //---------------Add new act--------------------
-onNewActSubmit(event) {
-  event.preventDefault()
-  const content = whateverthevalueoftheactinputis //listen to this
-  const user_id = whatevertheidofthecurrentuseris //listen to this
-  const category_id = whateverthecategoryidis //listen to this
-  searchGifs(content)
-  const newAct = {content: content, user_id: user_id, category_id: category_id, image_url: newGif}
-  state.acts.push(newAct)
-  saveNewActToAPI(newAct) //write this function
-  const id = getnewactid //write this function
-  renderAct(id)
+function onNewActSubmit(event) {
 
+  event.preventDefault()
+  const content = newActInput.value
+
+  const userID = 2 //change this
+  const catID = parseInt(newActCat.value)
+  searchGifs(content)
+
+  const newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
+  //debugger
+  saveNewActToAPI(newAct)
+  //.then(res => console.log(res))
+  init()
+  renderAct(state.acts.find(act => act.content === actContent).id)
 }
+
+function saveNewActToAPI(newAct) {
+  fetch(`http://localhost:3000/api/v1/acts/`, {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(newAct)
+  })
+}.then(res => console.log(res))
+
+//
+// function getNewActID(actContent) {
+//   const targetAct =
+//   return targetAct.id
+// }
+
 
 
 //---------------Giphy--------------
@@ -196,10 +223,13 @@ function searchGifs(searchTerm) {
   request = new XMLHttpRequest;
   request.open('GET', 'http://api.giphy.com/v1/gifs/search?q=' + searchTerm + '&api_key=UJDWiFrHozRQi5duuiI3YDFSgqIcbnqC')
   request.onload = function() {
+    // const data = JSON.parse(request.responseText).data[0].id;
+    //
+    // state.newGif = `https://media.giphy.com/media/${data}/giphy.gif`
 		if (request.status >= 200 && request.status < 400){
 
       const data = JSON.parse(request.responseText).data[0].id;
-			newGif = `https://media.giphy.com/media/${data}/giphy.gif` ;
+			return newGif = `https://media.giphy.com/media/${data}/giphy.gif` ;
 
 		} else {
 			console.log('reached giphy, but API returned an error');
