@@ -19,6 +19,8 @@ const signupInput = document.querySelector('#signup-input')
 const welcomeMessage = document.querySelector('.welcome-message')
 const newActCollapsibleButton = document.querySelector('.collapsible')
 const newActCollapsibleForm = document.querySelector('.new-act-collapsible')
+const loginFormEl = document.querySelector('#login-form')
+const loginSelectUserEl= document.querySelector('#login-select-user')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -61,6 +63,7 @@ function fetchUsersFromAPI() {
 function init() {
   fetchActsFromAPI()
   fetchUsersFromAPI()
+  .then(() => populateLoginForm())
 }
 
 //-----------Event Listener Functions----------
@@ -186,6 +189,15 @@ function onSignupFormSubmit(event) {
   }
 }
 
+function populateLoginForm() {
+    state.users.forEach((user) => {
+    const eachUser = document.createElement('option')
+    eachUser.innerText = user.name
+    loginSelectUserEl.append(eachUser)
+    })
+}
+
+
 function welcomeUser(name) {
   welcomeMessage.innerText = `Welcome, ${name}!`
 }
@@ -246,6 +258,5 @@ function onCollapseButton() {
       newActCollapsibleForm.style.display = "block";
     }
   };
-
 
 init()
