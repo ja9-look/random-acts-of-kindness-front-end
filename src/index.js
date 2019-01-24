@@ -16,7 +16,7 @@ const newActInput = document.querySelector('#new-act-input')
 const newActCat = document.querySelector('#new-act-cat')
 const signupForm = document.querySelector('#signup-form')
 const signupInput = document.querySelector('#signup-input')
-
+const welcomeMessage = document.querySelector('.welcome-message')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -39,7 +39,7 @@ workButton.addEventListener(`click`, onCatButton)
 generateButton.addEventListener(`click`, onGenerateButton)
 doneButton.addEventListener(`click`, onDoneButton)
 newActForm.addEventListener(`submit`, onNewActSubmit)
-collapsibleFormButton.addEventListener(`click`, onCollapseButton)
+signupForm.addEventListener(`submit`, onSignupFormSubmit)
 
 
 //----------Get data from API---------------
@@ -178,12 +178,15 @@ function onSignupFormSubmit(event) {
   if (signupInput.value.length > 0) {
   const name = signupInput.value
   createNewUser(name)
-
+  .then(res => res.json())
+  .then(() => fetchUsersFromAPI())
+  .then(() => welcomeUser(name))
 }
 }
 
-signupForm.addEventListener(`submit`, onSignupFormSubmit)
-
+function welcomeUser(name) {
+  welcomeMessage.innerText = `Welcome to Helpcues, ${name}!`
+}
 
 //---------------Add new act--------------------
 
