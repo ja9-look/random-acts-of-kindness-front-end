@@ -114,3 +114,17 @@ button {
   max-width: auto;
   max-height: 200px;
 }
+
+.select-category{
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
