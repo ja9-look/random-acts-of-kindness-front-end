@@ -23,7 +23,7 @@ const arrayOfCategories = [animalsButton, environmentButton, familyButton, chari
 let state = {
   acts: [],
   users: [],
-  currentUser: {},
+  currentUser: 2,
   selectedCategories: new Set([]),
   newGif: ""
 }
@@ -145,6 +145,7 @@ function randomActFromSelectedCategoryIDs() {
 function onGenerateButton() {
 
   if (state.selectedCategories.size > 0) {
+    debugger
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
 
@@ -167,7 +168,7 @@ function createNewUser(name) {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        name: name
+        name: nxame
     })
   })
 }
@@ -177,10 +178,10 @@ function onSignupFormSubmit(event) {
   if (signupInput.value.length > 0) {
   const name = signupInput.value
   createNewUser(name)
-  .then(res => res.json())
   .then(() => fetchUsersFromAPI())
   .then(() => welcomeUser(name))
-}
+  .then(() => state.currentUser = state.users.find(user => user.name === name))
+  }
 }
 
 function welcomeUser(name) {
@@ -194,7 +195,7 @@ function onNewActSubmit(event) {
   if (newActInput.value.length > 0 && newActCat.value.length > 0) {
       const content = newActInput.value
 
-      const userID = 2 //change this
+      const userID = state.currentUser
       const catID = parseInt(newActCat.value)
       let newAct;
       searchGifs(content).then(() => {
