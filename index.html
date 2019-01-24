@@ -12,27 +12,28 @@
     <div class="container">
       <img class="logo-img" src="logo.png" alt="Helpcues"/>
       <br>
-      <div class="category-container">
-        <button type="button" data-id="6" id="all-categories">All</button>
-        <button type="button" data-id="1" id="animals">Animals</button>
-        <button type="button" data-id="2" id="environment">Environment</button>
-        <button type="button" data-id="3" id="family-friends">Family & Friends</button>
-        <button type="button" data-id="4" id="charity">Charity</button>
-        <button type="button" data-id="5" id="work">At Work</button>
+      <div class="column category-container">
+        <div class="btn from-left" data-id="6" id="all-categories">All</div>
+        <div class="btn from-left" data-id="1" id="animals">Animals</div>
+        <div class="btn from-left" data-id="2" id="environment">Environment</div>
+        <div class="btn from-left" data-id="3" id="family-friends">Family & Friends</div>
+        <div class="btn from-left" data-id="4" id="charity">Charity</div>
+        <div class="btn from-left" data-id="5" id="work">At Work</div>
       </div>
       <br><br>
-      <button class="generate-button">Generate</button>
+      <div class="column">
+        <div class="btn from-left">Generate</div>
+        <div data-id="" class="act-container">
+          <br>
+          <img id="act-img" src="">
+          <p id="act-text"></p>
+          <button type="button" class="done-button" data-id="">Done</button>
+        </div>
 
-      <div data-id="" class="act-container">
-        <br>
-        <img id="act-img" src="">
-        <p id="act-text"></p>
-        <button type="button" class="done-button" data-id="">Done</button>
-      </div>
 
-
-      <div class="done-count-container">
-        <p id="done-streak"></p>
+        <div class="done-count-container">
+          <p id="done-streak"></p>
+        </div>
       </div>
 
       <form id="new-act-form">
