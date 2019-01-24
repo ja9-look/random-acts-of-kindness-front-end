@@ -14,6 +14,9 @@ const doneCountEl = document.querySelector('#done-streak')
 const newActForm = document.querySelector('#new-act-form')
 const newActInput = document.querySelector('#new-act-input')
 const newActCat = document.querySelector('#new-act-cat')
+const signupForm = document.querySelector('#signup-form')
+const signupInput = document.querySelector('#signup-input')
+
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -155,26 +158,29 @@ function onGenerateButton() {
 
 //----------------Signup----------------------
 
-// function createNewUser(name) {
-//   fetch(baseURL + "users", {
-//     method: 'POST',
-//     headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//         name: name
-//     })
-//   })
-// }
-//
-// function onSignupFormSubmit(event) {
-//   event.preventDefault()
-//   const name = event.target.value
-//   createNewUser(name)
-// }
-//
-// signupForm.addEventListener(`submit`, onSignupFormSubmit)
+function createNewUser(name) {
+  fetch(baseURL + "users", {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        name: name
+    })
+  })
+}
+
+function onSignupFormSubmit(event) {
+  event.preventDefault()
+  if (signupInput.value.length > 0) {
+  const name = signupInput.value
+  createNewUser(name)
+
+}
+}
+
+signupForm.addEventListener(`submit`, onSignupFormSubmit)
 
 
 //---------------Add new act--------------------
@@ -195,8 +201,6 @@ function onNewActSubmit(event) {
     newActForm.reset()
   }
   }
-
-
 
 function saveNewActToAPI(newAct) {
 
@@ -223,6 +227,6 @@ function searchGifs(searchTerm) {
     .then(res => res.data[0].id)
     .then(res => state.newGif = `https://media.giphy.com/media/${res}/giphy.gif`)
 };
-//returns url of first gif from search on giphy
+//returns promise of url of first gif from search on giphy
 
 init()
