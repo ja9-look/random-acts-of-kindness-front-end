@@ -86,11 +86,15 @@ function onAllButton(event) {
   }
 }
 
+function renderDoneCount(act) {
+  doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
+}
+
 function onDoneButton() {
     const selectedId = event.target.dataset.id
     const targetAct = state.acts.find(act => act.id === parseInt(selectedId))
     targetAct.done_count += 1
-    doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
+    renderDoneCount(targetAct)
     updateDoneDatabase(selectedId)
 }
 
@@ -142,10 +146,12 @@ function onGenerateButton() {
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
 
+
   }
   else {
     actImageEl.src = ""
     actTextEl.innerText = "Please select a category."
+    doneCountEl.innerText = ``
   }
 }
 //final function to call when generate button clicked
@@ -190,7 +196,9 @@ function onGenerateButton() {
 // document.addEventListener('click', () => runFunction(asdfasdf))
 //
 
+
 //---------------Add new act--------------------
+
 function onNewActSubmit(event) {
 
   event.preventDefault()
@@ -199,7 +207,6 @@ function onNewActSubmit(event) {
   const userID = 2 //change this
   const catID = parseInt(newActCat.value)
   let newAct;
-  debugger
   searchGifs(content).then(() => {
     return newAct = {content: content, user_id: userID, category_id: catID, image_url: state.newGif}
   }).then((res) => saveNewActToAPI(res))
