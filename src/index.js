@@ -162,20 +162,21 @@ function onGenerateButton() {
 //----------------Signup----------------------
 
 function createNewUser(name) {
-  fetch(baseURL + "users", {
+  return fetch(baseURL + "users", {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        name: nxame
+        name: name
     })
   })
 }
 
 function onSignupFormSubmit(event) {
   event.preventDefault()
+  debugger
   if (signupInput.value.length > 0) {
   const name = signupInput.value
   createNewUser(name)
