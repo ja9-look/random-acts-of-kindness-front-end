@@ -86,15 +86,13 @@ function onAllButton(event) {
   }
 }
 
-function renderDoneCount(act) {
-  doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
-}
+
 
 function onDoneButton() {
     const selectedId = event.target.dataset.id
     const targetAct = state.acts.find(act => act.id === parseInt(selectedId))
     targetAct.done_count += 1
-    renderDoneCount(targetAct)
+    doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
     updateDoneDatabase(selectedId)
 }
 
