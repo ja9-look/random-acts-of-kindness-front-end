@@ -151,6 +151,7 @@ button {
 }
 
 .done-button{
+  width: 420px;
   right: 0;
 	border: 2px solid #ffffff;
 	border-left: 0;
