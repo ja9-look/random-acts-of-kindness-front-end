@@ -108,6 +108,7 @@ function onLoginFormSubmit(event) {
   const targetUser = state.users.find(user => user.name === loginSelectUserEl.value)
   state.currentUser = targetUser
   loginFormEl.classList.toggle('visible')
+  signupForm.classList.remove('visible')
   welcomeUser(targetUser.name)
 }
 
@@ -125,10 +126,10 @@ function onDoneButton() {
 
 function displayUserDoneCount(targetUser) {
   if (targetUser.done_count > 0 && targetUser.done_count < 3) {
-  welcomeMessage.innerText = `Well done, ${name}! You have performed ${targetUser.done_count} acts of kindness.`
+  welcomeMessage.innerText = `Well done, ${targetUser.name}! You have performed ${targetUser.done_count} acts of kindness.`
 }
 else if (targetUser.done_count > 2) {
-  welcomeMessage.innerText = `You're on a roll! You have performed ${targetUser.done_count} acts of kindness.`
+  welcomeMessage.innerText = `You're on a roll ${targetUser.name}! You have performed ${targetUser.done_count} acts of kindness.`
 }
 }
 
@@ -229,6 +230,7 @@ function onSignupFormSubmit(event) {
   .then(() => welcomeUser(name))
   .then(() => state.currentUser = state.users.find(user => user.name === name))
   .then(() => signupForm.classList.toggle('visible'))
+  .then(() => loginFormEl.classList.remove('visible'))
   }
 }
 
@@ -302,6 +304,8 @@ function onCollapseButton() {
   //   }
 
     newActCollapsibleForm.classList.toggle('visible');
+    loginFormCollapse.classList.remove('visible');
+    signupFormCollapse.classList.remove('visible');
   }
 
 // const dummyFunc = () => {
@@ -319,6 +323,8 @@ function onSignUpButton(){
   //     signupFormCollapse.style.display = "block"
   //   }
   signupFormCollapse.classList.toggle('visible');
+  loginFormCollapse.classList.remove('visible');
+  newActCollapsibleForm.classList.remove('visible');
   }
 
 
@@ -330,6 +336,8 @@ function onLoginButton(){
   //   }
 
     loginFormCollapse.classList.toggle('visible');
+    signupFormCollapse.classList.remove('visible');
+    newActCollapsibleForm.classList.remove('visible');
   }
 
 

@@ -145,6 +145,10 @@ button {
   overflow: hidden;
 }
 
+.new-act-input{
+  border-radius: 8px;
+}
+
 .login-signup{
   position: absolute;
   right: 10px;
@@ -171,7 +175,6 @@ button {
   font-size: 12px;
   font-family: 'Open Sans', sans-serif;
   color: #ffffff;
-  letter-spacing: 10px;
   text-transform: uppercase;
 }
 
@@ -187,10 +190,14 @@ button {
 .signup-form{
   margin-top: 10px;
   display: none;
+}
 
+.signup-input{
+  border-radius: 8px;
 }
 
 .login-form{
+  border-radius: 25px;
   margin-top: 10px;
   display: none;
 }
