@@ -15,12 +15,16 @@ const doneCountEl = document.querySelector('#done-streak')
 const newActForm = document.querySelector('#new-act-form')
 const newActInput = document.querySelector('#new-act-input')
 const newActCat = document.querySelector('#new-act-cat')
+const signupButton = document.querySelector('.sign-up-button')
 const signupForm = document.querySelector('#signup-form')
+const signupFormCollapse = document.querySelector('.signup-form')
 const signupInput = document.querySelector('#signup-input')
 const welcomeMessage = document.querySelector('.welcome-message')
 const newActCollapsibleButton = document.querySelector('.collapsible')
 const newActCollapsibleForm = document.querySelector('.new-act-collapsible')
+const loginButton = document.querySelector('.login-button')
 const loginFormEl = document.querySelector('#login-form')
+const loginFormCollapse = document.querySelector('.login-form')
 const loginSelectUserEl= document.querySelector('#login-select-user')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
@@ -47,6 +51,8 @@ newActForm.addEventListener(`submit`, onNewActSubmit)
 signupForm.addEventListener(`submit`, onSignupFormSubmit)
 newActCollapsibleButton.addEventListener(`click`, onCollapseButton)
 loginFormEl.addEventListener(`submit`, onLoginFormSubmit)
+signupButton.addEventListener(`click`, onSignUpButton)
+loginButton.addEventListener(`click`, onLoginButton)
 
 //----------Get data from API---------------
 
@@ -288,11 +294,42 @@ function searchGifs(searchTerm) {
 //-------- collapsible form to create new act ---------------------
 
 function onCollapseButton() {
-  if (newActCollapsibleForm.style.display === "block") {
-      newActCollapsibleForm.style.display = "none"
-  } else {
-      newActCollapsibleForm.style.display = "block"
-    }
+  // if (newActCollapsibleForm.style.display === "block") {
+  //     newActCollapsibleForm.style.display = "none"
+  // } else {
+  //     newActCollapsibleForm.style.display = "block"
+  //   }
+
+    newActCollapsibleForm.classList.toggle('visible');
   }
+
+// const dummyFunc = () => {
+//   if(document.querySelectorAll('.visible').length) {
+//     [].call.forEach(document.querySelectorAll('.visible'), (el) => {
+//       el.classList.remove('visible');
+//     })
+//   }
+// }
+
+function onSignUpButton(){
+  // if (signupFormCollapse.style.display === "block") {
+  //     signupFormCollapse.style.display = "none"
+  // } else {
+  //     signupFormCollapse.style.display = "block"
+  //   }
+  signupFormCollapse.classList.toggle('visible');
+  }
+
+
+function onLoginButton(){
+  // if (loginFormCollapse.style.display === "block") {
+  //     loginFormCollapse.style.display = "none"
+  // } else {
+  //     loginFormCollapse.style.display = "block"
+  //   }
+
+    loginFormCollapse.classList.toggle('visible');
+  }
+
 
 init()
