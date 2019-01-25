@@ -103,18 +103,21 @@ function onAllButton(event) {
   if (!event.target.classList.contains('focus')) {
     removeFocus()
     event.target.classList.add('focus')
-    if (allButton.class === "active") {
-      allButton.class = ""
-      state.selectedCategories = new Set([])
-      arrayOfCategories.forEach(category => category.class = "")
-    }
-    else {
+    // if (allButton.class === "active") {
+    //   allButton.class = ""
+    //   state.selectedCategories = new Set([])
+    //   arrayOfCategories.forEach(category => category.class = "")
+    // }
+    // else {
       state.selectedCategories = new Set([1,2,3,4,5])
       allButton.class = "active"
       arrayOfCategories.forEach(category => category.class = "active")
-    }
+    // }
   }  else {
     removeFocus()
+    allButton.class = ""
+    state.selectedCategories = new Set([])
+    arrayOfCategories.forEach(category => category.class = "")
   }
 
 }
