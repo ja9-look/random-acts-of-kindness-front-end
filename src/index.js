@@ -244,8 +244,8 @@ function onNewActSubmit(event) {
   event.preventDefault()
   if (newActInput.value.length > 0 && newActCat.value.length > 0) {
       const content = newActInput.value
-
-      const userID = state.currentUser
+debugger
+      const userID = state.currentUser.id
       const catID = parseInt(newActCat.value)
       let newAct;
       searchGifs(content).then(() => {
