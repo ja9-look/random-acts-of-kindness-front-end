@@ -126,10 +126,10 @@ function onDoneButton() {
 
 function displayUserDoneCount(targetUser) {
   if (targetUser.done_count > 0 && targetUser.done_count < 3) {
-  welcomeMessage.innerText = `Well done, ${targetUser.name}! You have performed ${targetUser.done_count} acts of kindness.`
+  welcomeMessage.innerText = `Well done, ${targetUser.name}. You have performed ${targetUser.done_count} acts of kindness.`
 }
 else if (targetUser.done_count > 2) {
-  welcomeMessage.innerText = `You're on a roll ${targetUser.name}! You have performed ${targetUser.done_count} acts of kindness.`
+  welcomeMessage.innerText = `You're on a roll ${targetUser.name}. You have performed ${targetUser.done_count} acts of kindness.`
 }
 }
 
@@ -244,7 +244,7 @@ function populateLoginForm() {
 
 
 function welcomeUser(name) {
-  welcomeMessage.innerText = `Welcome, ${name}!`
+  welcomeMessage.innerText = `Welcome, ${name} ♡`
 }
 
 
