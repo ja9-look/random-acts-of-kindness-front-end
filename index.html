@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -9,6 +8,10 @@
     <title>Helpcues</title>
   </head>
   <body>
+    <div class="login-signup">
+      <div class="btn column sign-up-button">• Sign Up •</div>
+      <div class="btn column login-button">• Login •</div>
+    </div>
     <div class="container">
       <img class="logo-img" src="logo.png" alt="Helpcues"/>
       <br>
@@ -16,7 +19,8 @@
       <!-- Left Column -->
       <div class="column category-container">
         <strong><h4 class="welcome-message"></h4></strong>
-        <strong><h4 class="select-category">••• select category •••</h4></strong>
+        <strong><h4 class="select-category" style="font-size: 14px;">••• select category •••</h4></strong>
+        <br>
         <div class="btn from-left" data-id="6" id="all-categories"> ○ All</div>
         <div class="btn from-left" data-id="1" id="animals">♘ Animals</div>
         <div class="btn from-left" data-id="2" id="environment">✿ Environment</div>
@@ -24,11 +28,11 @@
         <div class="btn from-left" data-id="4" id="charity">✙ Charity</div>
         <div class="btn from-left" data-id="5" id="work">✎ At Work</div>
         <br>
-        <h2>
-          <div class="btn from-left generate-button">••• Generate >></div>
-        </h2>
+        <h4>
+          <div class="btn from-left generate-button" style="color:#40e0d0; font-size: 14px; font-decoration:bold;">••• Generate >></div>
+        </h4>
       <!-- add new act -->
-        <div class="btn from-left collapsible select-category">+ Create New Act + </div>
+        <div class="btn from-left collapsible select-category" style="color:#79e9de;">+ Create New Act + </div>
         <br>
         <div class="new-act-collapsible">
           <form id="new-act-form">
@@ -54,8 +58,11 @@
         <div data-id="" class="act-container">
           <br>
           <img height=400px class="act-img" id="act-img" src="">
+          <br>
+          <br>
           <p id="act-text"></p>
-          <button style="display: none;" class="done-button" data-id="">Done</button>
+          <br>
+          <div style="display: none;" class="done-button btn" data-id="">••• Done •••</div>
         </div>
         <div class="done-count-container">
           <p id="done-streak"></p>
