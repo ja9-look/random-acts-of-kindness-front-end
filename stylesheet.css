@@ -84,6 +84,7 @@ button {
 	transition-delay: .3s;
 }
 
+
 /* From Left Animation */
 
 .from-left:before,
@@ -127,6 +128,10 @@ button {
   text-transform: uppercase;
 }
 
+.category_wrapper{
+  margin-top: 35px;
+}
+
 .act-text{
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
@@ -160,6 +165,14 @@ button {
 	border: 2px solid #ffffff;
 	border-left: 0;
 	border-right: 0;
+}
+
+.welcome-message{
+  font-size: 12px;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  letter-spacing: 10px;
+  text-transform: uppercase;
 }
 
 .nav_forms_wrapper {

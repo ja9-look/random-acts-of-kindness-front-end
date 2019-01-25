@@ -107,6 +107,7 @@ function onLoginFormSubmit(event) {
   event.preventDefault()
   const targetUser = state.users.find(user => user.name === loginSelectUserEl.value)
   state.currentUser = targetUser
+  loginFormEl.classList.toggle('visible')
   welcomeUser(targetUser.name)
 }
 
@@ -227,6 +228,7 @@ function onSignupFormSubmit(event) {
   .then(() => fetchUsersFromAPI())
   .then(() => welcomeUser(name))
   .then(() => state.currentUser = state.users.find(user => user.name === name))
+  .then(() => signupForm.classList.toggle('visible'))
   }
 }
 
