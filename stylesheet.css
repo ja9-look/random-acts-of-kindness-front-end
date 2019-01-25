@@ -206,6 +206,10 @@ button {
   display: block;
 }
 
+.act_wrapper{
+  margin-top: 80px; 
+}
+
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
