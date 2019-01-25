@@ -79,6 +79,8 @@ function init() {
 function onCatButton(event) {
   event.preventDefault()
   const catId = parseInt(event.target.dataset.id)
+  allButton.classList.remove('focus')
+  event.target.classList.toggle('focus')
   if (event.target.class === "active") {
     event.target.class = ""
     state.selectedCategories.delete(catId)
@@ -89,18 +91,32 @@ function onCatButton(event) {
   }
 }
 
+function removeFocus(){
+  const allFocus = document.querySelectorAll('.focus');
+  [].forEach.call(allFocus, (el) => {
+      el.classList.remove('focus')
+  })
+}
+
 function onAllButton(event) {
   event.preventDefault()
-  if (allButton.class === "active") {
-    allButton.class = ""
-    state.selectedCategories = new Set([])
-    arrayOfCategories.forEach(category => category.class = "")
+  if (!event.target.classList.contains('focus')) {
+    removeFocus()
+    event.target.classList.add('focus')
+    if (allButton.class === "active") {
+      allButton.class = ""
+      state.selectedCategories = new Set([])
+      arrayOfCategories.forEach(category => category.class = "")
+    }
+    else {
+      state.selectedCategories = new Set([1,2,3,4,5])
+      allButton.class = "active"
+      arrayOfCategories.forEach(category => category.class = "active")
+    }
+  }  else {
+    removeFocus()
   }
-  else {
-    state.selectedCategories = new Set([1,2,3,4,5])
-    allButton.class = "active"
-    arrayOfCategories.forEach(category => category.class = "active")
-  }
+
 }
 
 function onLoginFormSubmit(event) {
