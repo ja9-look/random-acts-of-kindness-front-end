@@ -113,7 +113,7 @@ button {
 
 .act-img{
   max-width: auto;
-  max-height: 200px;
+  max-height: 250px;
 }
 
 .select-category{
@@ -122,6 +122,12 @@ button {
   color: #40e0d0;
   letter-spacing: 10px;
   text-transform: uppercase;
+}
+
+.act-text{
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
 }
 
 .new-act-collapsible {

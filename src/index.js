@@ -157,8 +157,9 @@ function onGenerateButton() {
   }
   else {
     actImageEl.src = ""
-    actTextEl.innerText = "Please select a category."
+    actTextEl.innerText = "Please select a category"
     doneCountEl.innerText = ``
+    doneButton.style.display = "none"
   }
 }
 //final function to call when generate button clicked
@@ -245,7 +246,7 @@ function searchGifs(searchTerm) {
     .then(request => request.json())
     .then(res => res.data[0].id)
     .then(res => state.newGif = `https://media.giphy.com/media/${res}/giphy.gif`)
-};
+}
 //returns promise of url of first gif from search on giphy
 
 
@@ -253,10 +254,10 @@ function searchGifs(searchTerm) {
 
 function onCollapseButton() {
   if (newActCollapsibleForm.style.display === "block") {
-      newActCollapsibleForm.style.display = "none";
+      newActCollapsibleForm.style.display = "none"
   } else {
-      newActCollapsibleForm.style.display = "block";
+      newActCollapsibleForm.style.display = "block"
     }
-  };
+  }
 
 init()
