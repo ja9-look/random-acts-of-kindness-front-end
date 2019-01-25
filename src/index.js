@@ -121,7 +121,10 @@ function onDoneButton() {
     doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
     displayUserDoneCount(state.currentUser)
     updateDoneDatabase(selectedId)
-    updateUserDoneCountInAPI(state.currentUser.id)
+    if (state.currentUser !== 2) {
+      updateUserDoneCountInAPI(state.currentUser.id)
+    }
+
 }
 
 function displayUserDoneCount(targetUser) {
@@ -252,9 +255,18 @@ function welcomeUser(name) {
 
 function onNewActSubmit(event) {
   event.preventDefault()
+
+  let userID
+
+  if (state.currentUser === 2) {
+    userID = 2
+  }
+  else {
+    userID = state.currentUser.id
+  }
+
   if (newActInput.value.length > 0 && newActCat.value.length > 0) {
       const content = newActInput.value
-      const userID = state.currentUser.id
       const catID = parseInt(newActCat.value)
       let newAct;
       searchGifs(content).then(() => {
@@ -264,7 +276,7 @@ function onNewActSubmit(event) {
           .then(() => renderAct(state.acts.find(act => act.content === content).id))
     newActForm.reset()
   }
-  }
+}
 
 function saveNewActToAPI(newAct) {
 
