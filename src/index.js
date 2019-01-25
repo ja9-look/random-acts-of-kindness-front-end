@@ -19,6 +19,8 @@ const signupInput = document.querySelector('#signup-input')
 const welcomeMessage = document.querySelector('.welcome-message')
 const newActCollapsibleButton = document.querySelector('.collapsible')
 const newActCollapsibleForm = document.querySelector('.new-act-collapsible')
+const loginFormEl = document.querySelector('#login-form')
+const loginSelectUserEl= document.querySelector('#login-select-user')
 
 const arrayOfCategories = [animalsButton, environmentButton, familyButton, charityButton, workButton]
 
@@ -61,6 +63,7 @@ function fetchUsersFromAPI() {
 function init() {
   fetchActsFromAPI()
   fetchUsersFromAPI()
+  .then(() => populateLoginForm())
 }
 
 //-----------Event Listener Functions----------
@@ -148,7 +151,6 @@ function randomActFromSelectedCategoryIDs() {
 function onGenerateButton() {
 
   if (state.selectedCategories.size > 0) {
-    debugger
     const id = randomActFromSelectedCategoryIDs().id
     renderAct(id)
 
@@ -164,14 +166,14 @@ function onGenerateButton() {
 //----------------Signup----------------------
 
 function createNewUser(name) {
-  fetch(baseURL + "users", {
+  return fetch(baseURL + "users", {
     method: 'POST',
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        name: nxame
+        name: name
     })
   })
 }
@@ -187,8 +189,17 @@ function onSignupFormSubmit(event) {
   }
 }
 
+function populateLoginForm() {
+    state.users.forEach((user) => {
+    const eachUser = document.createElement('option')
+    eachUser.innerText = user.name
+    loginSelectUserEl.append(eachUser)
+    })
+}
+
+
 function welcomeUser(name) {
-  welcomeMessage.innerText = `Welcome to Helpcues, ${name}!`
+  welcomeMessage.innerText = `Welcome, ${name}!`
 }
 
 //---------------Add new act--------------------
@@ -247,6 +258,5 @@ function onCollapseButton() {
       newActCollapsibleForm.style.display = "block";
     }
   };
-
 
 init()
