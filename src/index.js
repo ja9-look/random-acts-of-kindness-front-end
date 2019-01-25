@@ -1,5 +1,6 @@
 const baseURL = "http://localhost:3000/api/v1/"
 const doneURL = "http://localhost:3000/api/v1/done"
+const userDoneURL = "http://localhost:3000/api/v1/user-done"
 const allButton = document.querySelector("#all-categories")
 const animalsButton = document.querySelector("#animals")
 const environmentButton = document.querySelector("#environment")
@@ -45,6 +46,7 @@ doneButton.addEventListener(`click`, onDoneButton)
 newActForm.addEventListener(`submit`, onNewActSubmit)
 signupForm.addEventListener(`submit`, onSignupFormSubmit)
 newActCollapsibleButton.addEventListener(`click`, onCollapseButton)
+loginFormEl.addEventListener(`submit`, onLoginFormSubmit)
 
 //----------Get data from API---------------
 
@@ -95,14 +97,32 @@ function onAllButton(event) {
   }
 }
 
+function onLoginFormSubmit(event) {
+  event.preventDefault()
+  const targetUser = state.users.find(user => user.name === loginSelectUserEl.value)
+  state.currentUser = targetUser
+  welcomeUser(targetUser.name)
+}
 
 
 function onDoneButton() {
     const selectedId = event.target.dataset.id
     const targetAct = state.acts.find(act => act.id === parseInt(selectedId))
-    targetAct.done_count += 1
+    targetAct.done_count ++
+    state.currentUser.done_count ++
     doneCountEl.innerText = `This act has been done ${targetAct.done_count} times.`
+    displayUserDoneCount(state.currentUser)
     updateDoneDatabase(selectedId)
+    updateUserDoneCountInAPI(state.currentUser.id)
+}
+
+function displayUserDoneCount(targetUser) {
+  if (targetUser.done_count > 0 && targetUser.done_count < 3) {
+  welcomeMessage.innerText = `Well done, ${name}! You have performed ${targetUser.done_count} acts of kindness.`
+}
+else if (targetUser.done_count > 2) {
+  welcomeMessage.innerText = `You're on a roll! You have performed ${targetUser.done_count} acts of kindness.`
+}
 }
 
   function updateDoneDatabase(id) {
@@ -113,7 +133,21 @@ function onDoneButton() {
           'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-          act_id: id
+          act_id: id,
+          user_id: id
+      })
+    })
+  }
+
+  function updateUserDoneCountInAPI(user) {
+    fetch(userDoneURL, {
+      method: 'POST',
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          user_id: state.currentUser.id
       })
     })
   }
@@ -201,6 +235,7 @@ function populateLoginForm() {
 function welcomeUser(name) {
   welcomeMessage.innerText = `Welcome, ${name}!`
 }
+
 
 //---------------Add new act--------------------
 
